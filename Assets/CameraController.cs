@@ -1,11 +1,12 @@
+using Mono.Reflection;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform Obstruction;
-    public Transform LastObstruction;
+    HashSet<Transform> Obstructions = new HashSet<Transform>();
 
     GameObject Player;
     private float DistanceToPlayer;
@@ -23,20 +24,26 @@ public class CameraController : MonoBehaviour
 
     void ViewObstructed()
     {
-
-        if (Physics.Raycast(transform.position, (Player.transform.position - transform.position)+ new Vector3(0,1,0), out RaycastHit hit, DistanceToPlayer + 0.1f))
+        // check if there is anything obstructing the view of the player
+        if (Physics.Raycast(transform.position, (Player.transform.position - transform.position) + new Vector3(0,1,0), out RaycastHit hit, DistanceToPlayer + 0.1f))
         {
             if (!hit.collider.gameObject.CompareTag("Player"))
             {
-                LastObstruction = Obstruction;
-                Obstruction = hit.transform;
-                Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-
+                //If the object has not already been bloking the view then hide the object and add it to the list of obstructions
+                if (!Obstructions.Contains(hit.transform))
+                {
+                    Obstructions.Add(hit.transform);
+                    hit.transform.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+                }
             }
+            // Once line of sight has been restored to the player unhide all previously hidden objects 
             else
             {
-                LastObstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-                Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+                foreach (Transform Obstruction in Obstructions)
+                {
+                    Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+                }
+                Obstructions.Clear();
             }
         }
     }

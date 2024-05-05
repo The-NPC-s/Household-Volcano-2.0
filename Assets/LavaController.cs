@@ -26,14 +26,18 @@ public class LavaController : MonoBehaviour
                 case 1:
                     if (transform.position.y < 1.11f)
                     {
-                        Rise();
+                        Rise(1);
                     }
                     
                     break;
                 case 2:
+                    if (transform.position.y < 2.83f)
+                    {
+                        Rise(7);
+                    } else
                     if (transform.position.y < 4.64f)
                     {
-                        Rise();
+                        Rise(1);
                     }
                     break;
                 case 3:
@@ -46,8 +50,8 @@ public class LavaController : MonoBehaviour
         }
     }
 
-    private void Rise()
+    private void Rise(int multiplier)
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y + speed, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y + speed*multiplier, transform.position.z);
     }
 }
