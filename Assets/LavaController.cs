@@ -21,18 +21,20 @@ public class LavaController : MonoBehaviour
             switch (current_stage)
             {
                 case 0:
-                    if (transform.position.y < 1.11f) 
+                    // Lava does not rise
+                    break;
+                case 1:
+                    if (transform.position.y < 1.11f)
                     {
                         Rise();
                     }
+                    
                     break;
-                case 1:
+                case 2:
                     if (transform.position.y < 4.64f)
                     {
                         Rise();
                     }
-                    break;
-                case 2:
                     break;
                 case 3:
                     break;

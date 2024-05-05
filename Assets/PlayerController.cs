@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public int jumpForce = 15;
     public int base_speed=7;
     private int speed;
-    public bool onGround = true;
     public bool dead = false;
     private Animator animator;
     private float distToGround = 1.1f;
@@ -44,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     bool IsGrounded()
     {
-        return Physics.CapsuleCast(transform.position, transform.position, 0.52f, -Vector3.up, distToGround);
+        return Physics.CapsuleCast(transform.position, transform.position, 0.49f, -Vector3.up, distToGround);
     }
 
 private void Move()
@@ -91,26 +90,6 @@ private void Move()
             GetComponent<Rigidbody>().drag = 6f;
         else
             GetComponent<Rigidbody>().drag = 1.4f;
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (!IsGrounded())
-        {
-            
-        }
-    }
-
-    //Tried to fix bug where you can walk off surface and then jump
-    private void OnCollisionExit(Collision other)
-    {
-        /*
-        if (onGround && other.collider.tag == "Ground")
-        {
-            onGround = false;
-            animator.SetBool("isJumping", true);
-        }
-        */
     }
 
     private void OnTriggerEnter(Collider other)
