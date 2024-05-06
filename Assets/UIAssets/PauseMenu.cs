@@ -8,10 +8,11 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject gameOverUI;
+    public GameObject youWinUI;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && (gameOverUI.activeSelf == false))
+        if (Input.GetKeyDown(KeyCode.Escape) && (gameOverUI.activeSelf == false) && (youWinUI.activeSelf == false))
         {
             if (GameIsPaused)
             {
@@ -47,6 +48,7 @@ public class PauseMenu : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

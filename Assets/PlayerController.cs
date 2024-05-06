@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private float distToGround = 1.1f;
     private LavaController lava;
     public GameObject gameOverUI;
+    public GameObject youWinUI;
 
 
     void Start()
@@ -117,6 +118,11 @@ private void Move()
                 break;
             case "stage3trigger":
                 lava.current_stage = 3;
+                break;
+            case "GoldenWindow":
+                youWinUI.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Time.timeScale = 0f;
                 break;
             default:
                 break;

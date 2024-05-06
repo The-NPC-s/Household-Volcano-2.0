@@ -9,6 +9,7 @@ TagManager:
   - stage1trigger
   - stage2trigger
   - stage3trigger
+  - GoldenWindow
   layers:
   - Default
   - TransparentFX
