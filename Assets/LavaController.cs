@@ -35,12 +35,20 @@ public class LavaController : MonoBehaviour
                     {
                         Rise(7);
                     } else
-                    if (transform.position.y < 4.64f)
+                    if (transform.position.y < 4.3f)
                     {
-                        Rise(1);
+                        Rise(2);
                     }
                     break;
                 case 3:
+                    if (transform.position.y < 5.7f)
+                    {
+                        Rise(2);
+                    } else 
+                    if (transform.position.y < 9.3f)
+                    {
+                        Rise(1);
+                    }
                     break;
                 default:
                     break;

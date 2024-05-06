@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - stage1trigger
   - stage2trigger
+  - stage3trigger
   layers:
   - Default
   - TransparentFX

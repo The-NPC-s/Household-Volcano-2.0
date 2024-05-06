@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
                     hit.transform.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
                 }
             }
-            // Once line of sight has been restored to the player unhide all previously hidden objects 
+            // Once line of sight has been restored to the player unhide all previously hidden objects and clear the list
             else
             {
                 foreach (Transform Obstruction in Obstructions)
