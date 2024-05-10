@@ -14,7 +14,7 @@ public class LavaController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (lava_enabled)
         {
@@ -33,7 +33,7 @@ public class LavaController : MonoBehaviour
                 case 2:
                     if (transform.position.y < 2.83f)
                     {
-                        Rise(7);
+                        Rise(5);
                     } else
                     if (transform.position.y < 4.3f)
                     {

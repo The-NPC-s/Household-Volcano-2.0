@@ -44,7 +44,13 @@ public class PlayerController : MonoBehaviour
 
     bool IsGrounded()
     {
+        if (Physics.Raycast(transform.position, -Vector3.up, out RaycastHit hit, distToGround))
+        {
+            return (Physics.CapsuleCast(transform.position, transform.position, 0.49f, -Vector3.up, distToGround) && (hit.collider.tag != "lava"));
+        }
         return Physics.CapsuleCast(transform.position, transform.position, 0.49f, -Vector3.up, distToGround);
+
+
     }
 
 private void Move()
