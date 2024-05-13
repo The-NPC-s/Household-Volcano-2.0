@@ -8,7 +8,8 @@ using UnityEditor.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 
-
+    private AudioSource audioSource;
+    public AudioClip jumpSound;
     public int sensitivity = 1;
     public int jumpForce = 15;
     public int base_speed=7;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         lava = GameObject.Find("lava").GetComponent<LavaController>();
+        audioSource = GetComponent<AudioSource>();
         //Cursor.visible = false;
     }
 
@@ -82,6 +84,7 @@ private void Move()
 
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
+            audioSource.PlayOneShot(jumpSound);
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
