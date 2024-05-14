@@ -97,7 +97,7 @@ private void Move()
     private void Drag()
     {
         if (IsGrounded())
-            GetComponent<Rigidbody>().drag = 6f;
+            GetComponent<Rigidbody>().drag = 5f;
         else
             GetComponent<Rigidbody>().drag = 1.4f;
     }
